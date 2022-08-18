@@ -32,26 +32,21 @@ public class DbContext: Microsoft.EntityFrameworkCore.DbContext
         modelBuilder.Entity<Author>()
             .Property(f => f.Id)
             .ValueGeneratedOnAdd();
-<<<<<<< Updated upstream
+
         modelBuilder.Entity<Student>()
             .Property(f => f.Id)
             .ValueGeneratedOnAdd();
 
-=======
         
         //AUTHOR MODEL BUILDER
         //Auto generate ID
         modelBuilder.Entity<Library>().Property(f => f.Id).ValueGeneratedOnAdd();
->>>>>>> Stashed changes
     }
     
     //Mapping to entity classes
     public DbSet<Author> Author { get; set; }
     public DbSet<Book> Book { get; set; }
-<<<<<<< Updated upstream
     
     public DbSet<Student> Student { get; set; }
-=======
     public DbSet<Library> Library { get; set;}
->>>>>>> Stashed changes
 }

@@ -14,7 +14,6 @@ public class Author
     public int? Id { get; set; }
     public string? Name { get; set; }
     public ICollection<Book>? Books { get; set; }
-<<<<<<< Updated upstream
     
 }
 
@@ -22,7 +21,6 @@ public class Student
 {
 
     public int Id { get; set; }
-=======
 }
 
 public class Library
@@ -44,5 +42,4 @@ public class Library
         get;
         set;
     }
->>>>>>> Stashed changes
 }

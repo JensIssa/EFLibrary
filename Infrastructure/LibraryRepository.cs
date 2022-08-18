@@ -17,13 +17,13 @@ public class LibraryRepository
 
     public Book InsertBook(Book book)
     {
-        using( var context = new DbContext(_opts, ServiceLifetime.Scoped))
+        using (var context = new DbContext(_opts, ServiceLifetime.Scoped))
         {
             context.Book.Add(book);
             context.SaveChanges();
             return book;
         }
-        
+
     }
 
     public List<Book> SelectAllBooks()
@@ -137,8 +137,8 @@ public class LibraryRepository
             return book;
         }
     }
-    
-    
+
+
     public Library AddLibrary(Library library)
     {
         using (var context = new DbContext(_opts, ServiceLifetime.Scoped))
@@ -167,24 +167,25 @@ public class LibraryRepository
         }
     }
 
-<<<<<<< Updated upstream
     public List<Book> CustomQuery()
     {
         using (var context = new DbContext(_opts, ServiceLifetime.Scoped))
         {
             var result = from b in context.Book
-                where b.Id > 2 
+                where b.Id > 2
                       && b.AuthorId < 10
                       && EF.Functions.Like(b.Author.Name, "%Bob%")
                 select b;
             return result.ToList();
-=======
+        }
+    }
+
     public List<Library> GetLibraries()
     {
         using (var context = new DbContext(_opts, ServiceLifetime.Scoped))
         {
             return context.Library.ToList();
->>>>>>> Stashed changes
         }
     }
 }
+    
