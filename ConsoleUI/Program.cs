@@ -15,6 +15,7 @@ void PresentOptions()
     Console.WriteLine("5: Create a new author");
     Console.WriteLine("6: Delete an author and their books");
     Console.WriteLine("7: Rebuild DB (useful in case of schema changes)");
+    Console.WriteLine("8: Insert a new Library");
 }
 
 void PickOption()
@@ -41,6 +42,10 @@ void PickOption()
     } else if (input.Equals("7"))
     {
         RebuildDB();
+    }
+    else if(input.Equals("8"))
+    {
+        addLibrary();
     }
 
 }
@@ -82,6 +87,20 @@ void InsertBook()
     
 }
 
+void addLibrary()
+{
+    Console.WriteLine("Library name: ");
+    var name = Console.ReadLine();
+    var library = new Library();
+    library.Name = name;
+    Console.WriteLine("ID of library?");
+    ListAllLibraries();
+    int libraryId = Int32.Parse(Console.ReadLine());
+    library.Id = libraryId;
+    libraryRepository.AddLibrary(library);
+    Console.WriteLine("Library added");
+}
+
 void RemoveBook()
 {
     Console.WriteLine("Write book ID to remove:");
@@ -98,6 +117,16 @@ void ListAllAuthors()
         Console.WriteLine("Author number: "+author.Id+": "+author.Name);
     }
 }
+
+void ListAllLibraries()
+{
+    foreach (Library library in libraryRepository.GetLibraries())
+    {
+        Console.WriteLine("Library ID" + library.Id + ": " + library.Name);
+    }
+}
+
+
 
 void InsertAuthor()
 {

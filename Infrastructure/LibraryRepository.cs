@@ -137,12 +137,15 @@ public class LibraryRepository
             return book;
         }
     }
-
-    public Book GetBookById(int id)
+    
+    
+    public Library AddLibrary(Library library)
     {
         using (var context = new DbContext(_opts, ServiceLifetime.Scoped))
         {
-            return context.Book.Find(id) ?? throw new KeyNotFoundException("Could not find key with ID " + id);
+            context.Library.Add(library);
+            context.SaveChanges();
+            return library;
         }
     }
 
@@ -164,6 +167,7 @@ public class LibraryRepository
         }
     }
 
+<<<<<<< Updated upstream
     public List<Book> CustomQuery()
     {
         using (var context = new DbContext(_opts, ServiceLifetime.Scoped))
@@ -174,6 +178,13 @@ public class LibraryRepository
                       && EF.Functions.Like(b.Author.Name, "%Bob%")
                 select b;
             return result.ToList();
+=======
+    public List<Library> GetLibraries()
+    {
+        using (var context = new DbContext(_opts, ServiceLifetime.Scoped))
+        {
+            return context.Library.ToList();
+>>>>>>> Stashed changes
         }
     }
 }
