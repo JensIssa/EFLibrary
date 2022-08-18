@@ -40,7 +40,9 @@ public class DbContext: Microsoft.EntityFrameworkCore.DbContext
         
         //AUTHOR MODEL BUILDER
         //Auto generate ID
-        modelBuilder.Entity<Library>().Property(f => f.Id).ValueGeneratedOnAdd();
+        modelBuilder.Entity<Library>()
+            .Property(f => f.Id).
+            ValueGeneratedOnAdd();
     }
     
     //Mapping to entity classes
