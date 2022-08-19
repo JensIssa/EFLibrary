@@ -27,6 +27,14 @@ public class DbContext: Microsoft.EntityFrameworkCore.DbContext
         modelBuilder.Entity<Book>()
             .Ignore(b => b.Author);
         
+        //Foregin key to library ID
+        modelBuilder.Entity<Book>()
+            .HasOne(book => book.Library)
+            .WithMany(Library => Library.booksInLibrary)
+            .HasForeignKey(book => book.LibraryId)
+            .OnDelete(DeleteBehavior.Cascade);
+        
+        
         //AUTHOR MODEL BUILDER
         //Auto generate ID
         modelBuilder.Entity<Author>()
@@ -38,11 +46,12 @@ public class DbContext: Microsoft.EntityFrameworkCore.DbContext
             .ValueGeneratedOnAdd();
 
         
-        //AUTHOR MODEL BUILDER
+        //Library MODEL BUILDER
         //Auto generate ID
         modelBuilder.Entity<Library>()
             .Property(f => f.Id).
             ValueGeneratedOnAdd();
+        
     }
     
     //Mapping to entity classes

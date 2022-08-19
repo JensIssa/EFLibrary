@@ -7,6 +7,10 @@ public class Book
     public string? Title { get; set; }
     public virtual Author? Author { get; set; }
     public int? AuthorId { get; set; }
+    
+    public virtual Library ? Library { get; set; }
+    
+    public int? LibraryId { get; set;  }
 }
 
 public class Author

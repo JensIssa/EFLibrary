@@ -16,6 +16,8 @@ void PresentOptions()
     Console.WriteLine("6: Delete an author and their books");
     Console.WriteLine("7: Rebuild DB (useful in case of schema changes)");
     Console.WriteLine("8: Insert a new Library");
+    Console.WriteLine("9: List all libraries");
+    Console.WriteLine("Exit: Close the program");
 }
 
 void PickOption()
@@ -46,6 +48,14 @@ void PickOption()
     else if(input.Equals("8"))
     {
         addLibrary();
+    }
+    else if (input.Equals("9"))
+    {
+        ListAllAuthors();
+    }
+    else if (input.Equals("Exit"))
+    {
+        exitProgram();
     }
 }
 
@@ -81,24 +91,32 @@ void InsertBook()
     ListAllAuthors();
     int authorId = Int32.Parse(Console.ReadLine());
     book.AuthorId = authorId;
+    Console.WriteLine("ID of Library?");
+    ListAllLibraries();
+    int libraryId = Int32.Parse(Console.ReadLine());
+    book.LibraryId = libraryId;
     libraryRepository.InsertBook(book);
     Console.WriteLine("Insertion complete");
-    
 }
 
 void addLibrary()
 {
-    Console.WriteLine("Library name: ");
+    Console.WriteLine("Name of library?");
     var name = Console.ReadLine();
-    var library = new Library();
-    library.Name = name;
-    Console.WriteLine("ID of library?");
-    ListAllLibraries();
-    int libraryId = Int32.Parse(Console.ReadLine());
-    library.Id = libraryId;
+    var library = new Library()
+    {
+        Name = name
+    };
     libraryRepository.AddLibrary(library);
-    Console.WriteLine("Library added");
+    Console.WriteLine("Insertion complete");
 }
+
+void exitProgram()
+{
+    Console.WriteLine("Program has ended");
+    Environment.Exit(0);
+}
+
 
 void RemoveBook()
 {
